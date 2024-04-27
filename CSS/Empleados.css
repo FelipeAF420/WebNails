@@ -1,0 +1,433 @@
+
+.containerEmpleado {
+    width: 800px;
+    left: auto;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* Estilo adicional para dividir el formulario en dos columnas */
+/* Estilos para el formulario */
+.form-columnD {
+    float: left; /* Colocar la columna de datos del empleado a la derecha */
+    width: 45%; /* Ancho de la columna de datos del empleado */
+}
+
+.form-columnI {
+    float: right; /* Colocar la columna de asignación de servicios a la izquierda */
+    width: 45%; /* Ancho de la columna de asignación de servicios */
+}
+
+/* Limpiar floats */
+.containerEmpleado::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    padding: 4px;
+}
+
+.preview-imagen {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Estilos para el botón de envío */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+
+
+
+
+.contenedor-botones {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-agregar {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.servicioList {
+    overflow-y: auto; /* Habilitar el desplazamiento vertical si el contenido excede la altura máxima */
+
+}
+
+/* Estilos para la ventana emergente */
+/* Estilos para la ventana emergente */
+.ventana-emergente {
+    border: 2px solid #007bff; /* Cambia el color del borde */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 900px; /* Ancho máximo para evitar que la ventana sea demasiado ancha */
+    height: auto;
+}
+.ventana-emergente-empleado {
+    display: none;
+}
+/* Estilos para el título de la ventana emergente */
+.ventana-emergente h2 {
+    color: #007bff; /* Cambia el color del título */
+    margin: 0; /* Elimina el margen superior */
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px; /* Agrega espacio inferior */
+}
+
+/* Estilos para los campos de entrada dentro de la ventana emergente */
+.ventana-emergente input[type="text"],
+.ventana-emergente input[type="file"],
+.ventana-emergente select {
+    width: 90%; /* Ancho completo */
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para el botón de cierre de la ventana emergente */
+.ventana-emergente .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos de hover para el botón de cierre */
+.ventana-emergente .cerrar:hover {
+    color: #333;
+}
+
+/* Estilos para el botón dentro de la ventana emergente */
+.ventana-emergente button {
+    width: 100%; /* Ancho completo */
+    padding: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos de hover para el botón */
+.ventana-emergente button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la lista de servicios */
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+.servicios-list {
+    overflow-y: auto; /* Agrega un scroll vertical */
+    max-height: 400px; /* Altura máxima del contenedor antes de que aparezca el scroll */
+    display: flex; /* Cambia el comportamiento del contenedor a flexbox */
+    flex-wrap: wrap; /* Permite que los cards se envuelvan en múltiples líneas */
+    justify-content: space-evenly; /* Espacia uniformemente los cards */
+    width: 400px; /* Ancho fijo del contenedor */
+    height: 300px; /* Alto fijo del contenedor */
+}
+
+/* Estilos para los cards de servicio */
+
+/* Estilos para los cards de servicio */
+.servicio-card {
+    width: 35%;
+    height: 35%;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff; /* Color de fondo del card */
+    border: 1px solid #d71212;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el card */
+    transition: transform 0.3s ease; /* Agrega una transición suave al hacer hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo cuando se hace hover sobre el card */
+.servicio-card:hover {
+    transform: translateY(-5px); /* Mueve ligeramente el card hacia arriba */
+}
+
+/* Estilo cuando el card está seleccionado */
+.servicio-card.seleccionado {
+    border: 3px solid #2706e3;
+
+}
+
+
+/* Estilos para las imágenes de los servicios */
+.servicio-card img {
+    width: 50px; /* Tamaño de la imagen */
+    height: 50px; /* Tamaño de la imagen */
+    border-radius: 50%; /* Borde redondeado */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+/* Estilos para el texto dentro del card */
+.servicio-card h3 {
+    font-size: 14px; /* Tamaño del título */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+.servicio-card p {
+    font-size: 12px; /* Tamaño del texto */
+    color: #666; /* Color del texto */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+/* Estilos para alinear los selectores de categoría y subcategoría */
+.filtro-categoria,
+.filtro-subcategoria {
+
+    margin-right: 20px; /* Espacio entre los selectores */
+}
+
+.filtro-subcategoria {
+    margin-right: 0; /* Elimina el espacio derecho en el último selector */
+}
+
+
+/*diseño de las tarjetas de empleado*/
+.card-empleado {
+    margin-bottom: 20px; /* Agrega espacio entre los cards */
+    margin-right: 20px; /* Agrega espacio entre los cards */
+    width: 350px; /* Ancho del card */
+    height: auto; /* Altura automática */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Efecto de transición */
+    text-align: center; /* Centrar el texto */
+}
+.card-empleado:hover {
+    transform: translateY(-5px); /* Efecto de elevación al hacer hover */
+}
+.card-empleado img {
+    width: 100%; /* La imagen ocupará todo el ancho del card */
+    height: 90%; /* La altura se ajustará automáticamente para mantener la proporción */
+    border-radius: 10px 10px 0 0; /* Redondear las esquinas superiores */
+}
+
+.card-empleado .contenido {
+    padding: 20px;
+}
+
+.card-empleado h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card-empleado p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 0;
+}
+
+
+.scroll-containerEmpleados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space;
+    min-height: 600px; /* Establece una altura mínima */
+    height: 100%; /* El contenedor ocupará toda la altura disponible */
+    padding: 10px;
+    gap: 5px; /* Espacio entre los cards de servicios */
+    text-align: center; 
+    align-items: center;
+}
+
+
+/*estilos para los cards de servicioEmpleado*/
+.card-servicioEmpleado {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    flex: 0 0 auto; /* Evitar que los cards cambien de tamaño */
+    width: 100px; /* Tamaño deseado para los cards de servicios */
+    height: 100px; /* Tamaño deseado para los cards de servicios */
+}
+/* Estilos para las imágenes de los cards de servicios */
+.card-servicioEmpleado img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+
+}
+
+
+.scroll-containerServicios{
+    display: flex; /* Utilizar flexbox para alinear horizontalmente los cards */
+    overflow-x: auto; /* Agregar scroll horizontal */
+
+    padding-bottom: 10px; /* Espaciado inferior para compensar el scroll */
+    gap: 5px; /* Espacio entre los cards de servicios */
+
+}
+
+/*estilosmpara el boton desplegable*/
+/* Estilos para el botón de menú desplegable */
+.dropdown-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+/* Estilos para el contenido del menú desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Estilos para los enlaces del menú desplegable */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer; /* Cambia el cursor a pointer */
+}
+
+/* Estilos para los enlaces del menú desplegable al pasar el ratón por encima */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar el menú desplegable al pasar el ratón por encima del botón */
+.dropdown-btn:hover .dropdown-content {
+    display: block;
+}
+
+
+.preview-imagen {
+    max-width: 30%;
+    height: 30%;
+  }
+
+
+
+
+/* Estilos para el formulario de registro de empleado */
+.select-time-container {
+    display: flex;
+    align-items: center; /* Alinear verticalmente los elementos */
+    text-align: center;
+}
+
+.time-input-container {
+    position: relative;
+    margin-right: 30px;
+
+}
+
+.clear-button {
+
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    padding: 5px 8px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Estilos adicionales para los campos de tiempo */
+input[type="time"] {
+    width: 100%; /* Reducir el ancho para acomodar el botón */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de enviar */
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+

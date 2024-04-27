@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Categoría</title>
+    <link rel="stylesheet" href="../CSS/styles-cat-subcat-ser.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Categoría</h2>
+        <form action="../PHP/RegistrarCategoria.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre_categoria">Nombre de la Categoría:</label>
+                <input type="text" id="nombre_categoria" name="nombre_categoria" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen_categoria">Imagen de la Categoría:</label>
+                <input type="file" id="imagen_categoria" name="imagen_categoria" accept="image/*" required>
+            </div>
+            <button type="submit">Registrar Categoría</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Empleados.css">
+    <!-- Agregar enlaces a las fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Agregar enlaces a las bibliotecas de animaciones CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+<div class="contenedor-principal">
+    <h2 class="titulo-principal">Registro de Empleados</h2>
+    <div class="contenedor-botones">
+        <button id="btnAgregarEmpleado" class="btn-agregar animated pulse">Agregar Empleado</button>
+    </div>
+    <!-- Ventana emergentes -->
+    <div id="ventanaAgregarEmpleado" class="ventana-emergente ventana-emergente-empleado animated slideInDown">
+        <div class="containerEmpleado">
+            <h2>¡Registra un nuevo empleado!</h2>
+            <form action="../PHP/RegistrarEmpleado.php" method="POST" enctype="multipart/form-data" id="formularioRegistroEmpleado">
+            <input type="hidden" id="serviciosSeleccionados" name="serviciosSeleccionados">
+            <input type="hidden" id="horariosSeleccionados" name="horariosSeleccionados" value="">
+
+            <!-- Agregar un campo oculto para almacenar el ID del empleado -->
+            <input type="hidden" id="empleadoId" name="empleadoId" value="">
+                <!-- Columna izquierda para nombre, apellidos e imagen -->
+                <div class="form-columnD">
+                    <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoP">Apellido Paterno:</label>
+                        <input type="text" name="apellidoP" id="apellidoP" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoM">Apellido Materno:</label>
+                        <input type="text" name="apellidoM" id="apellidoM" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen (URL):</label>
+                        <input type="file" name="imagen" id="imagen" required>
+                    </div>
+                    <div class="form-group">
+                        <img id="imagen-preview" class="preview-imagen" src="#" alt="Vista previa de la imagen">
+                    </div>
+                </div>
+                <!-- Columna derecha para la selección de servicios -->
+                <div class="form-columnI">
+                    
+                    <div class="form-horarios">
+                        <label for="horarios" id="label-horario">horarios</label>
+                        <div class="form-group">
+                            <select name="diaSemana" id="diaSemana" required>
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miércoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                                <option value="sabado">Sábado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group select-time-container">
+                            
+                            <div class="time-input-container">
+                                <label for="horaInicio">Hora de inicio:</label>
+                                <input type="time" name="horaInicio" id="horaInicio">
+                            </div>
+                            <div class="time-input-container">
+                                <label for="horaFin">Hora de fin:</label>
+                                <input type="time" name="horaFin" id="horaFin">
+                            </div>
+                            <button type="button" class="clear-button" onclick="clearTime()">Limpiar</button>
+                        </div>
+                        <div class="form-group select-time-container">
+                            
+                            <div class="time-input-container">
+                                <label for="horaIniciodescanso">Hora de inicio descanso:</label>
+                                <input type="time" name="horaIniciodescanso" id="horaIniciodescanso">
+                            </div>
+                            <div class="time-input-container">
+                                <label for="horaFindescando">Hora de fin descanso:</label>
+                                <input type="time" name="horaFindescando" id="horaFindescanso">
+                            </div>
+                            <button type="button" class="clear-button" onclick="enviarHorario()">Limpiar</button>
+                        </div>
+
+                    </div>
+                   
+                    
+
+                    <div class="form-group">
+                        <label for="categoria">Categoría:</label>
+                        <div class="filtro-categoria">
+                            <select name="categoria" id="categoria">
+                                <!-- Las opciones de categoría se cargarán dinámicamente aquí -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subcategoria">Subcategoría:</label>
+                        <div class="filtro-subcategoria">
+                            <select name="subcategoria" id="subcategoria">
+                                <!-- Las opciones de subcategoría se cargarán dinámicamente aquí -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Servicios:</label>
+                        <div id="serviciosList" class="servicios-list">
+                            <!-- Los servicios se cargarán aquí mediante JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Registrar" class="btn-registrar" >
+            </form>
+        </div>
+    </div>
+    <div class="scroll-containerEmpleados">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javaScript/Empleados.js"></script>
+
+</div>
+</body>
+</html>

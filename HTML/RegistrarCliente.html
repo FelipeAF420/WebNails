@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cliente</title>
+    <link rel="stylesheet" href="../CSS/RegistroCliente.css">
+    <script>
+        function mostrarContrasena() {
+            var x = document.getElementById("contraseña");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="registro-cliente-form" action="../PHP/RegistrarCliente.php" method="post">
+        <h2>Registro de Cliente</h2>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellidoPaterno">Apellido Paterno:</label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
+        </div>
+        <div class="form-group">
+            <label for="apellidoMaterno">Apellido Materno:</label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+        </div>
+        <div class="form-group">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required>
+            <input type="checkbox" onclick="mostrarContrasena()"> Mostrar contraseña
+        </div>
+        <div class="form-group">
+            <label for="celular">Número de Celular:</label>
+            <input type="tel" id="celular" name="celular">
+        </div>
+        <div class="form-group">
+            <button type="submit">Registrarse</button>
+        </div>
+    </form>
+</body>
+</html>

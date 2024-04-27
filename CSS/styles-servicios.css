@@ -1,0 +1,318 @@
+.scroll-container {
+    overflow-x: auto; /* Permitir el scroll horizontal */
+    white-space: nowrap; /* Evitar el salto de línea dentro del contenedor */
+    text-align: center; 
+    height: auto;
+}
+
+
+.cards {
+    display: inline-block; /* Para que el contenedor de los cards se ajuste al contenido */
+    white-space: nowrap; /* Evitar el salto de línea dentro del contenedor */
+    text-align: center; /* Centra horizontalmente los elementos */
+    height: auto;
+}
+
+.card {
+    position: relative;
+    display: inline-block; /* Para que los cards se muestren en línea */
+    text-align: center; /* Centrar el texto */
+    margin-right: 10px; /* Espacio entre los cards */
+    height: 200px;
+    width: 150px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Efecto de transición */
+    margin: 10px;
+}
+
+
+
+
+/* Estilos para el botón del menú desplegable */
+/* Estilo del botón del menú desplegable */
+.dropdown-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    outline: none; /* Evita que el botón tenga un contorno al hacer clic */
+}
+
+.dropdown-btn::after {
+    content: "\22EE"; /* Código unicode del icono de tres puntos (⋮) */
+}
+
+/* Cambia el color del icono al pasar el cursor */
+.dropdown-btn:hover::after {
+    color: #555;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    position: absolute;
+    top: 30px; /* Ajusta la posición del menú */
+    right: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Inicialmente oculto */
+}
+
+/* Mostrar el menú desplegable al pasar el cursor sobre el botón o el menú */
+.dropdown-btn:hover + .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+/* Estilos para los botones dentro del menú desplegable */
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Estilos de hover para los botones del menú desplegable */
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+.card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+}
+
+.card img {
+    width: 90%; /* La imagen ocupará todo el ancho del card */
+    height: 80%; /* La altura se ajustará automáticamente para mantener la proporción */
+    object-fit: cover; /* Ajustar la imagen al contenedor manteniendo la relación de aspecto */
+    border-radius: 5px; /* Borde redondeado para la imagen */
+}
+
+.container {
+    max-height: 80vh; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+}
+
+/* Estilos para los cards de los servicios */
+.card-servicios {
+    display: inline-block; /* Para que los cards se muestren en línea */
+    margin-right: 10px; /* Espacio entre los cards */
+    width: 300px; /* Ancho del card */
+    height: auto; /* Altura automática */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Efecto de transición */
+    text-align: center; /* Centrar el texto */
+}
+
+.card-servicios:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+}
+
+.card-servicios img {
+    /* Estilos para la imagen del card de servicios */
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.card-servicios p {
+    /* Estilos para el párrafo */
+    font-size: 14px; /* Tamaño de fuente */
+    line-height: 1.6; /* Espaciado de línea */
+    margin: 0; /* Eliminar margen */
+    padding: 0; /* Eliminar relleno */
+    overflow-y: auto; /* Agregar desplazamiento vertical si el texto excede la altura */
+    max-height: 80px; /* Altura máxima para el párrafo */
+    word-wrap: break-word; /* Romper palabras largas */
+    text-align: left; /* Alinear el texto a la izquierda */
+    
+}
+.card-servicios .precio {
+    text-align: center; /* Centrar el texto */
+}
+.card-servicios .description-container p {
+    max-height: 5em; /* Establece la altura máxima para 5 líneas de texto */
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+    overflow-y: scroll; /* Agrega un desplazamiento vertical si el texto excede la altura máxima */
+    white-space: normal; /* Permite que el texto se ajuste automáticamente al ancho del contenedor */
+    width: 100%; /* Ajusta el texto al ancho del contenedor */
+    hyphens: auto; /* Permite que el navegador inserte guiones automáticamente para dividir palabras largas */
+    position: relative; /* Posición relativa para el contenedor de descripción */
+}
+
+
+.card-servicios .description-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); /* Degradado transparente a blanco */
+}
+
+
+/* Estilos CSS para la ventana emergente */
+
+.ventana-emergente {
+    border: 2px solid #007bff; /* Cambia el color del borde */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Ancho máximo para evitar que la ventana sea demasiado ancha */
+}
+.ventana-emergente-categoria{
+    display: none;
+}
+.ventana-emergente-subcategoria{
+    display: none;
+}
+.ventana-emergente-servicio{
+    display: none;
+}
+
+/* Estilos para el título de la ventana emergente */
+.ventana-emergente h2 {
+    color: #007bff; /* Cambia el color del título */
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los botones dentro de la ventana emergente */
+.ventana-emergente button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos de hover para los botones */
+.ventana-emergente button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para los campos de entrada dentro de la ventana emergente */
+.ventana-emergente input[type="text"],
+.ventana-emergente input[type="file"],
+.ventana-emergente select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para el contenedor de los campos de entrada */
+.ventana-emergente .form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilos para el enlace de cierre de la ventana emergente */
+.ventana-emergente .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos de hover para el enlace de cierre */
+.ventana-emergente .cerrar:hover {
+    color: #333;
+}
+
+
+/* Estilos para el botón de agregar categoría */
+#btnAgregarCategoria {
+    background-color: #007bff; /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Agrega bordes redondeados */
+    padding: 10px 20px; /* Ajusta el padding */
+    font-size: 16px; /* Cambia el tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+/* Estilos de hover para el botón de agregar categoría */
+#btnAgregarCategoria:hover {
+    background-color: #00b348; /* Cambia el color de fondo al pasar el ratón */
+}
+#btnAgregarServicio {
+    background-color: #007bff; /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Agrega bordes redondeados */
+    padding: 10px 20px; /* Ajusta el padding */
+    font-size: 16px; /* Cambia el tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+/* Estilos de hover para el botón de agregar categoría */
+#btnAgregarServicio:hover {
+    background-color: #00b348; /* Cambia el color de fondo al pasar el ratón */
+}
+
+#btnAgregarSubcategoria {
+    background-color: #007bff; /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Agrega bordes redondeados */
+    padding: 10px 20px; /* Ajusta el padding */
+    font-size: 16px; /* Cambia el tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+/* Estilos de hover para el botón de agregar categoría */
+#btnAgregarSubcategoria:hover {
+    background-color: #00b348; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Estilos para centrar horizontalmente los botones */
+.contenedor-botones {
+    text-align: center;
+}
+.image-preview {
+    display: block; /* Para que la imagen se muestre como un bloque */
+    margin: auto; /* Auto margin para centrar horizontalmente */
+    max-width: 100%; /* Limita el ancho de la imagen al 100% del contenedor */
+    max-height: 100%; /* Limita la altura de la imagen al 100% del contenedor */
+}

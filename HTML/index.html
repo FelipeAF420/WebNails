@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>But First Nails</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../Imagenes/Home/LOGO1.png" alt="But First Nails Logo">
+            </div>
+            <h1>But First Nails</h1>
+            <div class="cta">
+                <a href="#" class="btn">Agendar Cita</a>
+            </div>
+        </div>
+    </header>
+    <div class="page-content">
+        <!-- Aquí se cargará el contenido de las páginas -->
+    </div>
+
+    <!-- Menú lateral -->
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <h2>Menú</h2>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Inicio</a></li>
+                    <li><a href="#about" onclick="loadPage('about.html')">Acerca de Nosotros</a></li>
+                    <li><a href="Empleados.html" onclick="loadPage('Empleados.html')">Contacto</a></li>
+                    <li><a href="Servicios.php" onclick="loadPage('servicios.php')">Nuestros Servicios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <script>
+        // Scripts específicos para la página de servicios
+        function restartPageScripts() {
+            // Coloca aquí el código JavaScript que necesites ejecutar en la página de servicios
+        }
+        restartPageScripts(); // Ejecuta los scripts al cargar la página por primera vez
+    </script>
+
+    <script src="../JavaScript/ScripIndex.js"></script>
+
+    
+
+</body>
+</html>
