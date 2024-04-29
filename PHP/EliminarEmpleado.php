@@ -6,6 +6,11 @@ require_once 'Conection.php';
 if (isset($_POST['id_empleado'])) {
     // Obtener el ID del empleado a eliminar
     $empleadoId = $_POST['id_empleado'];
+
+    $query = "DELETE FROM HorarioEmpleado WHERE id_empleado = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->execute([$idEmpleado]);
+
     
     // Eliminar los servicios relacionados al empleado
     $query = "DELETE FROM EmpleadoServicio WHERE id_empleado = ?";
