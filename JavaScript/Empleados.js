@@ -48,6 +48,7 @@ function cargarCategorias() {
     });
 }
 
+
 $(document).ready(function() {
     // Lista para almacenar los IDs de los servicios seleccionados
     var serviciosSeleccionados = [];
@@ -82,6 +83,7 @@ $(document).ready(function() {
 
                 // Mostrar la ventana emergente de edición de empleado
                 $(".ventana-emergente-empleado").fadeIn();
+                cargarHorariosEmpleado(idEmpleado);
             },
             error: function(xhr, status, error) {
                 console.error('Error al obtener los datos del empleado:', error);
@@ -266,6 +268,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         // Manejar el envío del formulario
         $('#formularioRegistroEmpleado').submit(function(event) {
+              enviarHorario();
             // Verificar si no se han seleccionado servicios
             if (serviciosSeleccionados.length === 0) {
                 // Mostrar un mensaje de error al usuario
@@ -289,6 +292,7 @@ $(document).ready(function() {
                 event.preventDefault();
                 return;
             }
+          
             // Si todo está correcto, continuar con el envío del formulario
         });
     });
@@ -390,7 +394,7 @@ $(document).ready(function() {
                                 if (horario) {
                                     // Crear el card del horario
                                     var horarioCard = $('<div class="card-horarioEmpleado"></div>');
-                                    horarioCard.append('<p>Día: ' + horario.dia_semana + '</p>');
+                                    horarioCard.append('<p>' + horario.dia_semana + '</p>');
                                     horarioCard.append('<p>Hora de inicio: ' + horario.hora_inicio + '</p>');
                                     horarioCard.append('<p>Hora de fin: ' + horario.hora_fin + '</p>');
                                     horarioCard.append('<p>Hora de descanso inicio: ' + horario.hora_descanso_inicio + '</p>');
@@ -407,6 +411,21 @@ $(document).ready(function() {
                         });
                     });
 
+                    var dropdownBtn = $('<div class="dropdown-btn">⋮</div>');
+    
+                    // Crear el contenido del menú desplegable
+                    // Agregar el contenido del menú desplegable al botón con un ID que almacene el ID del empleado
+                    var dropdownContent = $('<div class="dropdown-content">' +
+                    '<a href="#" class="editar-empleado" data-id="' + empleado.id_empleado + '">Editar</a>' +
+                    '<a href="#" class="eliminar-empleado" data-id="' + empleado.id_empleado + '">Eliminar</a>' +
+                    '</div>');
+
+    
+                    // Agregar el contenido del menú desplegable al botón
+                    dropdownBtn.append(dropdownContent);
+    
+                    // Agregar el botón de menú desplegable al card del empleado
+                    empleadoCard.append(dropdownBtn);
 
                     // Agregar el card del empleado al contenedor de empleados
                     $('.scroll-containerEmpleados').append(empleadoCard);
@@ -425,6 +444,9 @@ $(document).ready(function() {
     // Cargar los empleados al cargar la página
     cargarEmpleados();
 });
+
+
+
 
 $(document).ready(function() {
     // Evento de clic para el botón de eliminar empleado utilizando delegación de eventos
@@ -489,6 +511,53 @@ function eliminarHorarioDelArreglo(diaSemana) {
 var horariosSemanales = {};
 var opcionSeleccionadaAnterior = $('#diaSemana').val();
 
+// Función para cargar los horarios completos del empleado
+function cargarHorariosEmpleado(idEmpleado) {
+    // Realizar una solicitud AJAX para obtener los horarios del empleado
+    $.ajax({
+        url: '../PHP/ObtenerHorarioEmppleado.php',
+        method: 'GET',
+        dataType: 'json',
+        data: { idEmpleado: idEmpleado },
+        success: function(horarios) {
+            // Limpiar el arreglo de horarios
+            horariosSemanales = {};
+
+            // Iterar sobre los horarios obtenidos
+            $.each(horarios, function(index, horario) {
+                // Verificar si el horario de descanso es "00:00:00"
+                if (horario.hora_descanso_inicio === "00:00:00" && horario.hora_descanso_fin === "00:00:00") {
+                    // Si el horario de descanso es "00:00:00", no se llena el valor del timer
+                    horario.hora_descanso_inicio = '';
+                    horario.hora_descanso_fin = '';
+                }
+
+                // Almacenar el horario en el arreglo utilizando el día de la semana como clave
+                horariosSemanales[horario.dia_semana] = {
+                    "horaInicio": horario.hora_inicio,
+                    "horaFin": horario.hora_fin,
+                    "horaInicioDescanso": horario.hora_descanso_inicio,
+                    "horaFinDescanso": horario.hora_descanso_fin
+                };
+            });
+
+            // Mostrar los horarios en el formulario de edición
+            var diaSeleccionado = $('#diaSemana').val();
+            var horarioSeleccionado = horariosSemanales[diaSeleccionado];
+            $('#horaInicio').val(horarioSeleccionado.horaInicio);
+            $('#horaFin').val(horarioSeleccionado.horaFin);
+            $('#horaIniciodescanso').val(horarioSeleccionado.horaInicioDescanso);
+            $('#horaFindescanso').val(horarioSeleccionado.horaFinDescanso);
+            console.log("Horarios enviados:", JSON.stringify(horariosSemanales));
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al obtener los horarios del empleado:', error);
+            // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
+        }
+    });
+}
+
+
 // Función para capturar los horarios de trabajo ingresados
 function enviarHorario() {
     var diaSemana = opcionSeleccionadaAnterior;
@@ -542,6 +611,7 @@ function enviarHorario() {
             "horaInicioDescanso": horaInicioDescanso,
             "horaFinDescanso": horaFinDescanso
         };
+        
         horariosSemanales[diaSemana] = horarios;
     }
 

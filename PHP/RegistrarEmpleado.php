@@ -62,6 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 function procesarHorarios($conexion, $idEmpleado, $horarios) {
+
+    $query = "DELETE FROM HorarioEmpleado WHERE id_empleado = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->execute([$idEmpleado]);
+
     foreach ($horarios as $diaSemana => $horario) {
         $query = "INSERT INTO HorarioEmpleado (id_empleado, dia_semana, hora_inicio, hora_fin, hora_descanso_inicio, hora_descanso_fin) 
                   VALUES (?, ?, ?, ?, ?, ?) 
