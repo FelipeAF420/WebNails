@@ -84,6 +84,8 @@ $(document).ready(function() {
                 // Mostrar la ventana emergente de edición de empleado
                 $(".ventana-emergente-empleado").fadeIn();
                 cargarHorariosEmpleado(idEmpleado);
+
+                
             },
             error: function(xhr, status, error) {
                 console.error('Error al obtener los datos del empleado:', error);
