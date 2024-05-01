@@ -1,17 +1,5 @@
 <?php
-// Configuración de la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ButFirstNails";
-
-// Crear conexión con la base de datos
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+require_once('Conection.php');
 
 // Obtener datos del formulario
 $data = json_decode(file_get_contents("php://input"), true);
@@ -44,7 +32,7 @@ if ($result->num_rows > 0) {
 
     $sql = "INSERT INTO Cliente (correo, nombre, apellidoP, apellidoM, num_celular, contraseña) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ssssss', $correo, nombre, $apellidoP, $apellidoM, num_celular, $hashedPassword);
+    $stmt->bind_param('ssssss', $correo, $nombre, $apellidoP, $apellidoM, $num_celular, $hashedPassword);
 
     if ($stmt->execute()) {
         // Registro exitoso
