@@ -58,7 +58,7 @@ $(document).ready(function() {
 
         // Obtener el ID del empleado del atributo data
         var idEmpleado = $(this).data('id');
-        $('#empleadoId').val(empleadoId);
+        $('#empleadoId').val(idEmpleado);
         // Realizar una solicitud AJAX para obtener los datos del empleado por su ID
         $.ajax({
             url: '../PHP/ObtenerEmpleadoPorId.php',
@@ -658,4 +658,21 @@ $('#diaSemana').change(function() {
         $('#horaFindescanso').val('');
     }
 
+});
+
+// Controlador de eventos para el cambio de archivo en el input de imagen de categoría
+$('#imagen').on('change', function() {
+    var file = $(this).prop('files')[0]; // Obtener el archivo seleccionado
+
+    // Verificar si se seleccionó un archivo
+    if (file) {
+        var reader = new FileReader(); // Crear un objeto FileReader
+
+        // Controlador de eventos para cuando se carga el archivo
+        reader.onload = function(e) {
+            $('#imagen-preview').attr('src', e.target.result).show(); // Actualizar la vista previa de la imagen
+        };
+
+        reader.readAsDataURL(file); // Leer el archivo como una URL de datos
+    }
 });
