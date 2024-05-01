@@ -1,46 +1,44 @@
+// Mostrar u ocultar la contraseña
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordInput = document.getElementById('passwordInput');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+});
+
+// Manejar el formulario de registro
 document.getElementById('registrationForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
     const form = event.target;
-    const correo = form.elements['correo'].value;
-    const nombre = form.elements['nombre'].value;
-    const apellidoP = form.elements['apellidoP'].value;
-    const apellidoM = form.elements['apellidoM'].value;
-    const num_celular = form.elements['num_celular'].value;
-    const contraseña = form.elements['contraseña'].value;
-    const confirmarContraseña = form.elements['confirmarContraseña'].value;
+    const formData = new FormData(form);
 
-    // Validar que las contraseñas coincidan
-    if (contraseña !== confirmarContraseña) {
-        alert('Las contraseñas no coinciden.');
-        return;
-    }
-
-    // Enviar una solicitud POST al servidor
-    fetch('login.php', {
+    // Enviar una solicitud POST al servidor con los datos del formulario y la imagen (si se proporciona)
+    fetch('../PHP/login.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            correo,
-            nombre,
-            apellidoP,
-            apellidoM,
-            num_celular,
-            contraseña
-        })
+        body: formData // Usar FormData para incluir la imagen y los datos del formulario
     })
-    .then(response => response.json())
+    .then(response => {
+        // Verifica si la respuesta fue exitosa
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor: ' + response.statusText);
+        }
+        return response.text(); // Leer la respuesta como texto
+    })
     .then(data => {
         // Manejar la respuesta del servidor
-        if (data.success) {
-            alert('Registro exitoso. Por favor verifica tu correo electrónico.');
-            // Puedes redirigir al usuario a otra página después del registro exitoso
-            // window.location.href = 'perfil.html';
+        console.log('Respuesta del servidor:', data);
+        // Verifica si data incluye el mensaje de éxito o redirección
+        if (data.includes("Registro exitoso")) {
+            alert('Registro exitoso. Redirigiendo al perfil.');
+            // Redirigir a la página de perfil
+            window.location.href = 'perfil.html';
         } else {
-            alert('Error en el registro: ' + data.message);
+            // Maneja otros mensajes de respuesta (por ejemplo, errores)
+            alert('Ocurrió un error: ' + data);
         }
     })
     .catch(error => {
