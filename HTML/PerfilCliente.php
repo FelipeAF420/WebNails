@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="../CSS/PerfilCliente.css">
 </head>
 <body>
+<?php include_once "../PHP/OntenerDatosCliente.php"; ?>
 
 <div class="container">
     <div class="profile-header">
         <h2>Perfil del Cliente</h2>
         <!-- Aquí puedes agregar una imagen de perfil del cliente -->
         <div class="profile-avatar">
-            <img src="avatar_cliente.jpg" alt="Imagen de perfil">
+            <img src="../imagenes/<?php echo $cliente['imagen']; ?>" alt="Imagen de perfil del cliente">
         </div>
     </div>
+
+
     <div class="profile-details">
         <h3>Información Personal</h3>
-        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-        <p><strong>Apellido Paterno:</strong> <span id="apellidoP"></span></p>
-        <p><strong>Apellido Materno:</strong> <span id="apellidoM"></span></p>
-        <p><strong>Correo Electrónico:</strong> <span id="correo"></span></p>
-        <p><strong>Número de Teléfono:</strong> <span id="telefono"></span></p>
+        <p><strong>Nombre:</strong> <?php echo $cliente['nombre'] . ' ' . $cliente['apellidoP'] . ' ' . $cliente['apellidoM']; ?></p>
+        <p><strong>Correo Electrónico:</strong> <?php echo $cliente['correo']; ?></p>
+        <p><strong>Número de Teléfono:</strong> <?php echo $cliente['num_celular']; ?></p>
         <!-- Aquí puedes agregar botones para editar la información del cliente -->
         <button id="editar-informacion">Editar Información</button>
     </div>

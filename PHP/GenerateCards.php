@@ -16,9 +16,6 @@ try {
         $imagenCategoria = $row['imagen'];
 
         // Generar la tarjeta de categoría
-        
-
-
         echo '<div class="card">';
         echo '<img src="' . $imagenCategoria . '" alt="' . $nombreCategoria . '">';
         echo '<div class="card-body">';
@@ -31,6 +28,7 @@ try {
         echo '</div>';
         echo '</div>';
     }
+    
 } catch (PDOException $e) {
     // En caso de error, imprimir el mensaje de error
     echo 'Error al obtener las categorías: ' . $e->getMessage();
