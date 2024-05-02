@@ -31,6 +31,9 @@
         <h3>Historial de Citas</h3>
         <!-- Aquí puedes mostrar el historial de citas del cliente -->
     </div>
+    <form action="../PHP/CerrarSesion.php" method="post">
+    <button type="submit" name="CerrarSesion">Cerrar Sesión</button>
+</form>
 </div>
 
 </body>
