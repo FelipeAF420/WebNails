@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Citas - Salón de Belleza</title>
+    <link rel="stylesheet" href="../CSS/AgendarCita.css">
+</head>
+<body>
+    <header>
+        <!-- Aquí puedes incluir el encabezado que ya tienes -->
+        <!-- Logo y barra de navegación -->
+    </header>
+
+    <section id="reserva-citas">
+        <div class="container">
+            <h2>Reserva tu Cita</h2>
+            <form id="formulario-citas">
+                <!-- Datos del cliente -->
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+
+                <!-- Selección de servicio -->
+                <div class="form-group">
+                    <label for="servicio">Selecciona el Servicio:</label>
+                    <div id="servicios" class="card-container">
+                        <!-- Aquí se cargarán dinámicamente las tarjetas de servicios -->
+                    </div>
+                </div>
+
+                <!-- Selección de empleado -->
+                <div class="form-group" id="seleccion-empleado" style="display: none;">
+                    <label for="empleado">Selecciona el Empleado:</label>
+                    <div id="empleados" class="card-container">
+                        <!-- Aquí se cargarán dinámicamente las tarjetas de empleados -->
+                    </div>
+                </div>
+
+                <!-- Selección de fecha y hora -->
+                <div class="form-group" id="seleccion-fecha-hora" style="display: none;">
+                    <label for="fecha">Selecciona la Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                    <label for="hora">Selecciona la Hora:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+
+                <button type="submit">Reservar Cita</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Pie de página con enlaces y detalles de contacto -->
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
