@@ -135,15 +135,10 @@ header .logo img {
     transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
     font-size: 10px; /* Tamaño de fuente más pequeño para botones */
 }
-
-/* Estilo de las imágenes dentro de los botones */
-/* Estilo de las imágenes dentro de los botones */
-.btn img.icono {
-    width: 3px; /* Ancho de la imagen muy pequeño (3 veces más pequeño que 10px) */
-    height: 3px; /* Altura de la imagen muy pequeña (3 veces más pequeña que 10px) */
-    margin-left: 2px; /* Espaciado pequeño entre el texto y la imagen */
+ 
+img{
+    padding-left: 10px;
 }
-
 
 /* Efecto de cambio de color al pasar el ratón sobre el botón */
 .btn:hover {
@@ -153,6 +148,6 @@ header .logo img {
 /* Estilos para los contenedores de botones */
 .boxLogin {
     display: inline-block; /* Colocar los botones uno al lado del otro */
-    margin-right: 3px; /* Espacio entre contenedores */
+    margin-right: 1px; /* Espacio entre contenedores */
     float: right; /* Alinear los contenedores a la derecha */
 }
