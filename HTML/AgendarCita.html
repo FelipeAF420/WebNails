@@ -29,11 +29,26 @@
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" id="telefono" name="telefono" required>
                 </div>
-
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <div class="filtro-categoria">
+                        <select name="categoria" id="categoria">
+                            <!-- Las opciones de categoría se cargarán dinámicamente aquí -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subcategoria">Subcategoría:</label>
+                    <div class="filtro-subcategoria">
+                        <select name="subcategoria" id="subcategoria">
+                            <!-- Las opciones de subcategoría se cargarán dinámicamente aquí -->
+                        </select>
+                    </div>
+                </div>
                 <!-- Selección de servicio -->
                 <div class="form-group">
-                    <label for="servicio">Selecciona el Servicio:</label>
-                    <div id="servicios" class="card-container">
+                    <label> Selecciona el Servicio:</label>
+                    <div id="containerServicios" class="card-container">
                         <!-- Aquí se cargarán dinámicamente las tarjetas de servicios -->
                     </div>
                 </div>
@@ -58,11 +73,9 @@
             </form>
         </div>
     </section>
-
-    <footer>
-        <!-- Pie de página con enlaces y detalles de contacto -->
-    </footer>
-
-    <script src="scripts.js"></script>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../JavaScript/AgendarCita.js"></script>
 </body>
 </html>

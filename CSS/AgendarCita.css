@@ -72,3 +72,65 @@ button:hover {
 .card p {
     margin-bottom: 10px;
 }
+
+.card-container {
+    overflow-y: auto; /* Habilitar el desplazamiento vertical si el contenido excede la altura máxima */
+
+}
+
+.card-container {
+    overflow-y: auto; /* Agrega un scroll vertical */
+    max-height: 400px; /* Altura máxima del contenedor antes de que aparezca el scroll */
+    display: flex; /* Cambia el comportamiento del contenedor a flexbox */
+    flex-wrap: wrap; /* Permite que los cards se envuelvan en múltiples líneas */
+    justify-content: space-evenly; /* Espacia uniformemente los cards */
+    width: 400px; /* Ancho fijo del contenedor */
+    height: 300px; /* Alto fijo del contenedor */
+}
+/* Estilos para los cards de servicio */
+.servicio-card {
+    width: 35%;
+    height: 35%;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff; /* Color de fondo del card */
+    border: 1px solid #d71212;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el card */
+    transition: transform 0.3s ease; /* Agrega una transición suave al hacer hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo cuando se hace hover sobre el card */
+.servicio-card:hover {
+    transform: translateY(-5px); /* Mueve ligeramente el card hacia arriba */
+}
+
+/* Estilo cuando el card está seleccionado */
+.servicio-card.seleccionado {
+    border: 3px solid #2706e3;
+
+}
+
+
+/* Estilos para las imágenes de los servicios */
+.servicio-card img {
+    width: 50px; /* Tamaño de la imagen */
+    height: 50px; /* Tamaño de la imagen */
+    border-radius: 50%; /* Borde redondeado */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+/* Estilos para el texto dentro del card */
+.servicio-card h3 {
+    font-size: 14px; /* Tamaño del título */
+    margin-bottom: 5px; /* Espacio inferior */
+}
+
+.servicio-card p {
+    font-size: 12px; /* Tamaño del texto */
+    color: #666; /* Color del texto */
+    margin-bottom: 5px; /* Espacio inferior */
+}
