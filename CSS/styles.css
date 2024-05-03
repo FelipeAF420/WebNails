@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 /* Reset */
 * {
     box-sizing: border-box;
@@ -14,19 +17,23 @@ body {
 }
 
 .container {
-    width: 80%;
-    margin: auto;
+    width: 97%;
+    margin: 3px;
     overflow: hidden;
 }
 
 header {
-    background: #1b4659;
-    color: #fff;
+    background: #1C0027;
+    color: #ffffff;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999; /* Asegura que el encabezado esté encima de otros elementos */
+}
+h1{
+    font-family: "Dancing Script", cursive;
+    
 }
 .page-content {
     width: 100%; /* Ancho del contenedor */
@@ -120,12 +127,13 @@ header .logo img {
 }
 
 
+
 /* Estilos para los botones */
 .btn {
     display: inline-flex; /* Para colocar texto e imagen en línea */
     align-items: center; /* Centrar verticalmente el texto y la imagen */
     padding: 2px 6px; /* Espaciado interno aún más pequeño para botones más pequeños */
-    background-color: #7615FF; /* Color morado para los botones */
+    background-color: #4B00BB; /* Color morado para los botones */
     color: white; /* Color del texto blanco */
     border-radius: 5px; /* Borde redondeado */
     text-decoration: none; /* Eliminar subrayado en enlaces */
@@ -150,4 +158,44 @@ img{
     display: inline-block; /* Colocar los botones uno al lado del otro */
     margin-right: 1px; /* Espacio entre contenedores */
     float: right; /* Alinear los contenedores a la derecha */
+}
+
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 150px;
+}
+
+/* Estilos para el formulario de búsqueda */
+.search-form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    padding: 5px 10px;
+    background-color: white;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Estilos para el campo de texto de búsqueda */
+.search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.titulo{
+    padding-right: 90px;
 }
