@@ -52,6 +52,7 @@ var serviciosSeleccionados = [];
 
         // Actualizar el campo oculto con la lista de servicios seleccionados
         actualizarCampoServicios();
+        cargarEmpleadosPorServicios(serviciosSeleccionados);
 
         // Imprimir la lista de servicios seleccionados en la consola (para propósitos de prueba)
         console.log('Servicios seleccionados:', serviciosSeleccionados);
@@ -198,3 +199,42 @@ function cargarTodosLosServicios() {
         }
     });
 }
+
+
+function cargarEmpleados(servicioId) {
+    // Realizar la solicitud AJAX al script PHP para obtener los empleados asociados al servicio
+    $.ajax({
+        url: '../PHP/RecuperarEmpleadosPorServicio.php', // Ruta del script PHP
+        type: 'GET',
+        data: { servicio: servicioId }, // Enviar el ID del servicio como parámetro
+        dataType: 'json', // Tipo de datos esperado en la respuesta
+        success: function(response) {
+            // Limpiar el contenido actual de los empleados
+            $('#empleados').empty();
+            
+            // Verificar si se recibieron empleados
+            if (response && response.length > 0) {
+                // Iterar sobre cada empleado y agregarlo al contenedor de empleados
+                $.each(response, function(index, empleado) {
+                    // Crear un nuevo card de empleado y agregarlo al contenedor
+                    var empleadoCard = $(`<div class="empleado-card" data-id="${empleado.id_empleado}">
+                        <h3>${empleado.nombre}</h3>
+                    </div>`);
+                    $('#empleados').append(empleadoCard);
+                });
+                // Mostrar el contenedor de empleados
+                $('#seleccion-empleado').show();
+            } else {
+                // Mostrar un mensaje si no se encontraron empleados
+                $('#empleados').html('<p>No se encontraron empleados para este servicio</p>');
+                // Ocultar el contenedor de empleados
+                $('#seleccion-empleado').hide();
+            }
+        },
+        error: function(xhr, status, error) {
+            // Mostrar un mensaje de error si la solicitud AJAX falla
+            console.error('Error al cargar los empleados:', error);
+        }
+    });
+}
+
