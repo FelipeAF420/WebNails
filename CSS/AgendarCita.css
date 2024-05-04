@@ -49,36 +49,13 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos de las tarjetas */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 200px;
-}
-
-.card h3 {
-    margin-top: 0;
-    font-size: 1.2em;
-}
-
-.card p {
-    margin-bottom: 10px;
-}
 
 .card-container {
     overflow-y: auto; /* Habilitar el desplazamiento vertical si el contenido excede la altura máxima */
 
 }
 
-.card-container {
+.card-containerservicio {
     overflow-y: auto; /* Agrega un scroll vertical */
     max-height: 400px; /* Altura máxima del contenedor antes de que aparezca el scroll */
     display: flex; /* Cambia el comportamiento del contenedor a flexbox */
@@ -114,7 +91,9 @@ button:hover {
 
 }
 
-
+.card-empleado.seleccionadoEmpleado {
+    border:3px solid  #2706e3; /* Cambiar el borde del empleado seleccionado */
+}
 /* Estilos para las imágenes de los servicios */
 .servicio-card img {
     width: 50px; /* Tamaño de la imagen */
@@ -134,3 +113,59 @@ button:hover {
     color: #666; /* Color del texto */
     margin-bottom: 5px; /* Espacio inferior */
 }
+
+/*diseño de las tarjetas de empleado*/
+.card-empleado {
+    margin-bottom: 20px; /* Agrega espacio entre los cards */
+    margin-right: 20px; /* Agrega espacio entre los cards */
+    width: 200px; /* Ancho del card */
+    height: auto; /* Altura automática */
+    border: 1px solid #d54141;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Efecto de transición */
+    text-align: center; /* Centrar el texto */
+}
+.card-empleado:hover {
+    transform: translateY(-5px); /* Efecto de elevación al hacer hover */
+}
+.card-empleado img {
+    width: 100%; /* La imagen ocupará todo el ancho del card */
+    height: 90%; /* La altura se ajustará automáticamente para mantener la proporción */
+    border-radius: 10px 10px 0 0; /* Redondear las esquinas superiores */
+}
+
+.card-empleado .contenido {
+    padding: 20px;
+}
+
+.card-empleado h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card-empleado p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 0;
+}
+
+/* Estilos para el div de información de la cita */
+#info-cita {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Estilos para la información de cada servicio */
+.servicio-info {
+    margin-bottom: 10px;
+}
+
+.card-empleado:hover {
+    background-color: #f0f0f0; /* Cambiar el color de fondo al pasar sobre la tarjeta */
+}
+

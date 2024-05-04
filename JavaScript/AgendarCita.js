@@ -52,10 +52,14 @@ var serviciosSeleccionados = [];
 
         // Actualizar el campo oculto con la lista de servicios seleccionados
         actualizarCampoServicios();
-        cargarEmpleadosPorServicios(serviciosSeleccionados);
+        cargarEmpleados(serviciosSeleccionados);
 
         // Imprimir la lista de servicios seleccionados en la consola (para propósitos de prueba)
         console.log('Servicios seleccionados:', serviciosSeleccionados);
+    });
+
+    $(document).on('click', '.empleado-card', function() {
+        $(this).toggleClass('seleccionadoEmpleado');
     });
     
 });
@@ -201,40 +205,37 @@ function cargarTodosLosServicios() {
 }
 
 
-function cargarEmpleados(servicioId) {
-    // Realizar la solicitud AJAX al script PHP para obtener los empleados asociados al servicio
+function cargarEmpleados(serviciosSeleccionados) {
     $.ajax({
-        url: '../PHP/RecuperarEmpleadosPorServicio.php', // Ruta del script PHP
+        url: '../PHP/RecuperarEmpleadosPorServicio.php',
         type: 'GET',
-        data: { servicio: servicioId }, // Enviar el ID del servicio como parámetro
-        dataType: 'json', // Tipo de datos esperado en la respuesta
+        data: { servicios: serviciosSeleccionados },
+        dataType: 'json',
         success: function(response) {
-            // Limpiar el contenido actual de los empleados
+            // Limpiar el contenedor de empleados
             $('#empleados').empty();
             
-            // Verificar si se recibieron empleados
-            if (response && response.length > 0) {
-                // Iterar sobre cada empleado y agregarlo al contenedor de empleados
-                $.each(response, function(index, empleado) {
-                    // Crear un nuevo card de empleado y agregarlo al contenedor
-                    var empleadoCard = $(`<div class="empleado-card" data-id="${empleado.id_empleado}">
-                        <h3>${empleado.nombre}</h3>
-                    </div>`);
-                    $('#empleados').append(empleadoCard);
-                });
-                // Mostrar el contenedor de empleados
-                $('#seleccion-empleado').show();
-            } else {
-                // Mostrar un mensaje si no se encontraron empleados
-                $('#empleados').html('<p>No se encontraron empleados para este servicio</p>');
-                // Ocultar el contenedor de empleados
-                $('#seleccion-empleado').hide();
-            }
+            // Iterar sobre los empleados y mostrarlos en la página
+            $.each(response, function(index, empleado) {
+                // Crear el card del empleado
+                var empleadoCard = $('<div class="card-empleado"></div>');
+
+                // Agregar la imagen del empleado al card
+                var imagenEmpleado = $('<img class="imagen-empleado">');
+                imagenEmpleado.attr('src', empleado.imagen);
+                empleadoCard.append(imagenEmpleado);
+
+                // Agregar el nombre y apellidos del empleado al card
+                var nombreCompleto = empleado.nombre + ' ' + empleado.apellidoP + ' ' + empleado.apellidoM;
+                empleadoCard.append('<h3>' + nombreCompleto + '</h3>');
+                $('#empleados').append(empleadoCard);
+            });
         },
         error: function(xhr, status, error) {
-            // Mostrar un mensaje de error si la solicitud AJAX falla
             console.error('Error al cargar los empleados:', error);
         }
     });
 }
+
+
 

@@ -48,13 +48,13 @@
                 <!-- Selección de servicio -->
                 <div class="form-group">
                     <label> Selecciona el Servicio:</label>
-                    <div id="containerServicios" class="card-container">
+                    <div id="containerServicios" class="card-containerservicio">
                         <!-- Aquí se cargarán dinámicamente las tarjetas de servicios -->
                     </div>
                 </div>
 
                 <!-- Selección de empleado -->
-                <div class="form-group" id="seleccion-empleado" style="display: none;">
+                <div class="form-group" id="seleccion-empleado">
                     <label for="empleado">Selecciona el Empleado:</label>
                     <div id="empleados" class="card-container">
                         <!-- Aquí se cargarán dinámicamente las tarjetas de empleados -->
@@ -67,6 +67,10 @@
                     <input type="date" id="fecha" name="fecha" required>
                     <label for="hora">Selecciona la Hora:</label>
                     <input type="time" id="hora" name="hora" required>
+                </div>
+
+                <div id="info-cita">
+                    <!-- Aquí se mostrará la información de los servicios y empleados seleccionados -->
                 </div>
 
                 <button type="submit">Reservar Cita</button>
