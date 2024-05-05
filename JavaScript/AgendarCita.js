@@ -24,13 +24,30 @@ var serviciosSeleccionados = [];
         }
     });
     cargarCategorias();
+    
+});
 
 
+$(document).ready(function() {
 
-// Evento de clic para los cards de servicio utilizando delegación de eventos
-     $(document).on('click', '.servicio-card', function() {
+    var serviciosSeleccionados = [];
+    var empleadosSeleccionados = {}; // Objeto para almacenar los empleados seleccionados para cada servicio
+
+    // Función para actualizar el campo oculto con la lista de servicios seleccionados
+    function actualizarCampoServicios() {
+        $('#serviciosSeleccionados').val(JSON.stringify(serviciosSeleccionados));
+    }
+
+    // Evento de clic para los cards de servicio utilizando delegación de eventos
+    $(document).on('click', '.servicio-card', function() {
         // Obtener el ID del servicio del atributo data
         var servicioId = $(this).data('id');
+
+        // Verificar si se ha seleccionado un empleado para el servicio previamente seleccionado (si existe)
+        if (serviciosSeleccionados.length > 0 && !(serviciosSeleccionados[serviciosSeleccionados.length - 1] in empleadosSeleccionados)) {
+            alert('Por favor, seleccione un empleado para el servicio previamente seleccionado.');
+            return; // Salir de la función sin realizar más acciones
+        }
 
         // Alternar la clase de selección del card de servicio
         $(this).toggleClass('seleccionado');
@@ -39,15 +56,17 @@ var serviciosSeleccionados = [];
         if ($(this).hasClass('seleccionado')) {
             // Si está seleccionado, agregar el ID del servicio a la lista de servicios seleccionados
             serviciosSeleccionados.push(servicioId);
-            actualizarCampoServicios();
         } else {
-            
             // Si no está seleccionado, eliminar el ID del servicio de la lista de servicios seleccionados
             var index = serviciosSeleccionados.indexOf(servicioId);
             if (index !== -1) {
                 serviciosSeleccionados.splice(index, 1);
-                actualizarCampoServicios();
             }
+
+            // Limpiar el empleado seleccionado para este servicio
+            delete empleadosSeleccionados[servicioId];
+            // Desmarcar todos los cards de empleados asociados a este servicio
+            $(`.card-empleado[data-servicio="${servicioId}"]`).removeClass('seleccionadoEmpleado');
         }
 
         // Actualizar el campo oculto con la lista de servicios seleccionados
@@ -58,11 +77,31 @@ var serviciosSeleccionados = [];
         console.log('Servicios seleccionados:', serviciosSeleccionados);
     });
 
-    $(document).on('click', '.empleado-card', function() {
+    // Evento de clic para los cards de empleado
+    $(document).on('click', '.card-empleado', function() {
+        var servicioId = $(this).data('servicio');
+
+        // Obtener el ID del empleado del atributo data
+        var empleadoId = $(this).data('id');
+
+        // Alternar la clase de selección del card de empleado
         $(this).toggleClass('seleccionadoEmpleado');
+
+        // Verificar si el card de empleado está seleccionado
+        if ($(this).hasClass('seleccionadoEmpleado')) {
+            // Si está seleccionado, agregar el ID del empleado al objeto de empleados seleccionados
+            empleadosSeleccionados[servicioId] = empleadoId;
+        } else {
+            // Si no está seleccionado, eliminar el ID del empleado del objeto de empleados seleccionados
+            delete empleadosSeleccionados[servicioId];
+        }
+
+        // Imprimir el objeto de empleados seleccionados en la consola (para propósitos de prueba)
+        console.log('Empleados seleccionados:', empleadosSeleccionados);
     });
-    
 });
+
+
 
  // Función para cargar las categorías
 function cargarCategorias() {

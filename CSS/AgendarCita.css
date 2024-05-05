@@ -92,7 +92,7 @@ button:hover {
 }
 
 .card-empleado.seleccionadoEmpleado {
-    border:3px solid  #2706e3; /* Cambiar el borde del empleado seleccionado */
+    border:3px solid  #14d514; /* Cambiar el borde del empleado seleccionado */
 }
 /* Estilos para las imágenes de los servicios */
 .servicio-card img {
