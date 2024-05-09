@@ -1,10 +1,4 @@
 
-.containerEmpleado {
-    width: 800px;
-    left: auto;
-    margin: 0 auto;
-    padding: 20px;
-}
 /* Estilo adicional para dividir el formulario en dos columnas */
 /* Estilos para el formulario */
 .form-columnD {
@@ -174,7 +168,6 @@ input[type="submit"]:hover {
 
 .cards {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -252,43 +245,49 @@ input[type="submit"]:hover {
 }
 
 
-/*diseño de las tarjetas de empleado*/
+/* Diseño de las tarjetas de empleado */
 .card-empleado {
-    margin-bottom: 20px; /* Agrega espacio entre los cards */
-    margin-right: 20px; /* Agrega espacio entre los cards */
-    width: 350px; /* Ancho del card */
-    height: auto; /* Altura automática */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.3s ease; /* Efecto de transición */
-    text-align: center; /* Centrar el texto */
-}
-.card-empleado:hover {
-    transform: translateY(-5px); /* Efecto de elevación al hacer hover */
-}
-.card-empleado img {
-    width: 100%; /* La imagen ocupará todo el ancho del card */
-    height: 90%; /* La altura se ajustará automáticamente para mantener la proporción */
-    border-radius: 10px 10px 0 0; /* Redondear las esquinas superiores */
+    width: 450px; /* Ajustamos el ancho para una mejor apariencia */
+    margin: 0 15px 20px 0; /* Añadimos margen entre los cards */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 10px 10px 0 0; /* Redondeamos las esquinas superiores */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    overflow: hidden; /* Ocultamos contenido desbordante */
+    text-align: center; /* Centra el texto */
 }
 
+/* Efecto de elevación al hacer hover */
+.card-empleado:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
+}
+
+/* Imagen dentro de la card */
+.card-empleado img {
+    width: 100%; /* Imagen ocupa todo el ancho del card */
+    height: 45%; /* Ajustamos la altura de la imagen */
+    object-fit: cover; /* Ajustamos la imagen para que se vea bien */
+    border-radius: 10px 10px 0 0; /* Redondeamos las esquinas superiores de la imagen */
+}
+
+/* Contenido dentro de la card */
 .card-empleado .contenido {
-    padding: 20px;
+    padding: 15px;
+    text-align: center;
 }
 
 .card-empleado h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 10px; /* Espacio inferior para separación */
 }
 
 .card-empleado p {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0; /* Quitamos margen inferior */
 }
+
 
 
 .scroll-containerEmpleados {
