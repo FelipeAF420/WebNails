@@ -9,7 +9,7 @@ if (isset($_POST['id_empleado'])) {
 
     $query = "DELETE FROM HorarioEmpleado WHERE id_empleado = ?";
     $stmt = $conexion->prepare($query);
-    $stmt->execute([$idEmpleado]);
+    $stmt->execute([$empleadoId]);
 
     
     // Eliminar los servicios relacionados al empleado
