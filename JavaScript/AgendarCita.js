@@ -1,11 +1,14 @@
 var serviciosSeleccionados = [];
- $(document).ready(function() {
+var empleadosSeleccionados = [];
+var servicioCounter = 1;
+
+$(document).ready(function() {
    
     function actualizarCampoServicios() {
         $('#serviciosSeleccionados').val(JSON.stringify(serviciosSeleccionados));
     }
 
-        // Al cargar la página, seleccionar automáticamente la opción "All services"
+    // Al cargar la página, seleccionar automáticamente la opción "All services"
     $('#categoria').append('<option value="all" selected>All services</option>');
     cargarTodosLosServicios();
     $('#subcategoria').prop('disabled', true).val(''); // Deshabilitar y limpiar la selección
@@ -24,30 +27,11 @@ var serviciosSeleccionados = [];
         }
     });
     cargarCategorias();
-    
-});
-
-
-$(document).ready(function() {
-
-    var serviciosSeleccionados = [];
-    var empleadosSeleccionados = {}; // Objeto para almacenar los empleados seleccionados para cada servicio
-
-    // Función para actualizar el campo oculto con la lista de servicios seleccionados
-    function actualizarCampoServicios() {
-        $('#serviciosSeleccionados').val(JSON.stringify(serviciosSeleccionados));
-    }
 
     // Evento de clic para los cards de servicio utilizando delegación de eventos
     $(document).on('click', '.servicio-card', function() {
         // Obtener el ID del servicio del atributo data
         var servicioId = $(this).data('id');
-
-        // Verificar si se ha seleccionado un empleado para el servicio previamente seleccionado (si existe)
-        if (serviciosSeleccionados.length > 0 && !(serviciosSeleccionados[serviciosSeleccionados.length - 1] in empleadosSeleccionados)) {
-            alert('Por favor, seleccione un empleado para el servicio previamente seleccionado.');
-            return; // Salir de la función sin realizar más acciones
-        }
 
         // Alternar la clase de selección del card de servicio
         $(this).toggleClass('seleccionado');
@@ -56,52 +40,86 @@ $(document).ready(function() {
         if ($(this).hasClass('seleccionado')) {
             // Si está seleccionado, agregar el ID del servicio a la lista de servicios seleccionados
             serviciosSeleccionados.push(servicioId);
+            actualizarCampoServicios();
+
+            // Mostrar los detalles del servicio seleccionado en el div de detalle de la cita
+            mostrarDetalleCita(servicioId, servicioCounter);
+
+            // Incrementar el contador de servicios
+            servicioCounter++;
         } else {
             // Si no está seleccionado, eliminar el ID del servicio de la lista de servicios seleccionados
             var index = serviciosSeleccionados.indexOf(servicioId);
             if (index !== -1) {
                 serviciosSeleccionados.splice(index, 1);
-            }
+                actualizarCampoServicios();
 
-            // Limpiar el empleado seleccionado para este servicio
-            delete empleadosSeleccionados[servicioId];
-            // Desmarcar todos los cards de empleados asociados a este servicio
-            $(`.card-empleado[data-servicio="${servicioId}"]`).removeClass('seleccionadoEmpleado');
+                // Eliminar los detalles del servicio del div de detalle de la cita
+                $('#detalle-cita').find(`#servicio-${servicioCounter - 1}`).remove();
+
+                // Decrementar el contador de servicios
+                servicioCounter--;
+            }
         }
 
         // Actualizar el campo oculto con la lista de servicios seleccionados
         actualizarCampoServicios();
         cargarEmpleados(serviciosSeleccionados);
-
-        // Imprimir la lista de servicios seleccionados en la consola (para propósitos de prueba)
         console.log('Servicios seleccionados:', serviciosSeleccionados);
     });
 
-    // Evento de clic para los cards de empleado
+    // Evento de clic para los cards de empleado utilizando delegación de eventos
     $(document).on('click', '.card-empleado', function() {
-        var servicioId = $(this).data('servicio');
-
-        // Obtener el ID del empleado del atributo data
+        // Obtener el ID del empleado seleccionado
         var empleadoId = $(this).data('id');
 
         // Alternar la clase de selección del card de empleado
         $(this).toggleClass('seleccionadoEmpleado');
 
-        // Verificar si el card de empleado está seleccionado
+        // Si el card de empleado está seleccionado, agregarlo a la lista de empleados seleccionados
         if ($(this).hasClass('seleccionadoEmpleado')) {
-            // Si está seleccionado, agregar el ID del empleado al objeto de empleados seleccionados
-            empleadosSeleccionados[servicioId] = empleadoId;
+            empleadosSeleccionados.push(empleadoId);
         } else {
-            // Si no está seleccionado, eliminar el ID del empleado del objeto de empleados seleccionados
-            delete empleadosSeleccionados[servicioId];
+            // Si el card de empleado no está seleccionado, eliminarlo de la lista de empleados seleccionados
+            var index = empleadosSeleccionados.indexOf(empleadoId);
+            if (index !== -1) {
+                empleadosSeleccionados.splice(index, 1);
+               
+            }
         }
-
-        // Imprimir el objeto de empleados seleccionados en la consola (para propósitos de prueba)
         console.log('Empleados seleccionados:', empleadosSeleccionados);
     });
 });
 
+// Función para mostrar los detalles del servicio en el div de detalle de la cita
+function mostrarDetalleCita(servicioId, counter) {
+    // Realizar una solicitud AJAX para obtener los detalles del servicio
+    $.ajax({
+        url: '../PHP/ObtenerDetallesServicio.php',
+        method: 'GET',
+        data: { servicioId: servicioId },
+        dataType: 'json',
+        success: function(detalle) {
+            // Construir el HTML para mostrar los detalles del servicio
+            var detalleHtml = `
+                <div id="servicio-${counter}">
+                    <h3>Servicio ${counter}</h3>
+                    <p>Servicio: ${detalle.nombre}</p>
+                    <p>Descripción: ${detalle.descripcion}</p>
+                    <p>Precio: ${detalle.precio}</p>
+                </div>
+            `;
 
+            // Agregar los detalles del servicio al div de detalle de la cita
+            $('#detalle-cita').append(detalleHtml);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al obtener los detalles del servicio:', error);
+        }
+    });
+}
+
+// Otras funciones omitidas por brevedad...
 
  // Función para cargar las categorías
 function cargarCategorias() {
@@ -257,7 +275,8 @@ function cargarEmpleados(serviciosSeleccionados) {
             // Iterar sobre los empleados y mostrarlos en la página
             $.each(response, function(index, empleado) {
                 // Crear el card del empleado
-                var empleadoCard = $('<div class="card-empleado"></div>');
+                var empleadoCard = $(`<div class="card-empleado" data-id="${empleado.id_empleado}"></div>`);
+
 
                 // Agregar la imagen del empleado al card
                 var imagenEmpleado = $('<img class="imagen-empleado">');
@@ -275,6 +294,3 @@ function cargarEmpleados(serviciosSeleccionados) {
         }
     });
 }
-
-
-
