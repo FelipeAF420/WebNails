@@ -911,3 +911,29 @@ input[type="submit"]:hover {
   .card-horarioEmpleado p {
     margin: 5px 0;
   }
+
+  /* Estilos opcionales para el buscador */
+  .buscador {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.search-button {
+    padding: 8px;
+    background-color: #ccc;
+}
+
+.search-results {
+    margin-top: 20px;
+}
